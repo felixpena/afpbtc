@@ -193,6 +193,52 @@ CATALOG = [
     },
 ]
 
+CATALOG += [
+    {
+        "id": "lth_mvrv", "group": "Valoración", "name": "MVRV de largo plazo", "unit": "×",
+        "source": "bitview",
+        "what": "Ganancia no realizada de los holders de largo plazo (150 días o más).",
+        "formula": "Precio ÷ precio realizado de los holders de largo plazo",
+        "read": "Mide la convicción de las manos fuertes: valores altos indican grandes ganancias acumuladas que pueden empezar a venderse.",
+        "limits": "El grupo cambia de composición a medida que monedas cumplen 150 días.",
+    },
+    {
+        "id": "sth_mvrv", "group": "Valoración", "name": "MVRV de corto plazo", "unit": "×",
+        "source": "bitview",
+        "what": "Ganancia o pérdida de los compradores recientes (menos de 150 días).",
+        "formula": "Precio ÷ precio realizado de los holders de corto plazo",
+        "read": "Bajo 1, los compradores recientes están en pérdida; el nivel 1 suele actuar como soporte o resistencia.",
+        "limits": "Reacciona rápido al precio y genera señales falsas en mercados laterales.",
+    },
+    {
+        "id": "lth_share", "group": "Holders", "name": "Participación LTH", "unit": "%",
+        "source": "afpbtc",
+        "what": "Porcentaje de la oferta en manos de largo plazo.",
+        "formula": "Oferta LTH ÷ oferta total × 100",
+        "read": "Sube en mercados bajistas (acumulación) y baja cuando los holders antiguos distribuyen en alzas.",
+        "limits": "Hereda la convención de 150 días de la definición LTH.",
+    },
+]
+
+# Pistas para los gráficos del panel: zonas históricas (high/low), línea de
+# referencia (ref), escala logarítmica (log) y si comparte eje con el precio.
+CHART_HINTS = {
+    "mvrv_zscore": {"high": 7, "low": 0},
+    "mvrv": {"high": 3.5, "low": 1, "ref": 1},
+    "lth_mvrv": {"ref": 1, "log": True},
+    "sth_mvrv": {"ref": 1},
+    "realized_price": {"same_axis_as_price": True, "log": True},
+    "mayer_multiple": {"high": 2.4, "low": 0.8, "ref": 1},
+    "sopr": {"ref": 1},
+    "nupl": {"high": 0.75, "low": 0, "ref": 0},
+    "reserve_risk": {"high": 0.02, "low": 0.0015, "log": True},
+    "hashrate": {"log": True},
+    "hashprice": {"log": True},
+    "puell_multiple": {"high": 4, "low": 0.5, "ref": 1},
+    "fee_rate_median": {"log": True},
+    "cycle_index": {"high": 80, "low": 20, "min": 0, "max": 100},
+}
+
 CYCLE_PHASES = [
     (20, "Capitulación"),
     (40, "Acumulación"),

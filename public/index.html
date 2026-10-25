@@ -4,81 +4,245 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AFPBTC — Datos onchain de Bitcoin en español</title>
-<meta name="description" content="Valoración, ciclo y salud de la red Bitcoin, leídos desde la cadena y explicados en español.">
+<meta name="description" content="Valoración, ciclo, comportamiento de holders y salud de la red Bitcoin, leídos desde la cadena y explicados en español. Gratis.">
+<link rel="canonical" href="https://afpbtc.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AFPBTC">
+<meta property="og:title" content="AFPBTC — Bitcoin, leído directamente desde la cadena">
+<meta property="og:description" content="Métricas onchain de Bitcoin gratis y en español: MVRV, NUPL, SOPR, holders, hashrate y el termómetro de ciclo AFPBTC.">
+<meta property="og:url" content="https://afpbtc.com/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0D0E0C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root { --bg:#0D0E0C; --card:#151613; --line:#262823; --ink:#EDEAE3; --mute:#A39E93; --btc:#F7931A; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:Archivo, system-ui, sans-serif; }
-  main { max-width:1000px; margin:0 auto; padding:72px 16px; }
-  .k { font-family:"JetBrains Mono", monospace; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--btc); }
-  h1 { font-size:clamp(40px,7vw,76px); line-height:1; letter-spacing:-.03em; margin:16px 0 0; font-weight:800; }
-  p.lead { color:#C9C4B8; font-size:19px; line-height:1.55; max-width:620px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-top:40px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; }
-  .lbl { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--mute); text-transform:uppercase; letter-spacing:.08em; }
-  .val { font-family:"JetBrains Mono", monospace; font-size:26px; margin-top:8px; }
-  .bar { position:relative; display:grid; grid-template-columns:repeat(5,1fr); height:44px; border-radius:8px; overflow:hidden; margin-top:40px; }
-  .bar span:nth-child(1){background:#1F4E79}.bar span:nth-child(2){background:#2E7DAF}.bar span:nth-child(3){background:#8A8F7A}.bar span:nth-child(4){background:#D9822B}.bar span:nth-child(5){background:#B8441E}
-  .mark { position:absolute; top:-6px; bottom:-6px; width:4px; background:var(--ink); border-radius:2px; left:50%; transition:left .6s; }
-  .legend { display:grid; grid-template-columns:repeat(5,1fr); font-size:13px; color:#C9C4B8; margin-top:10px; }
-  a { color:var(--btc); }
-  footer { margin-top:56px; font-size:13px; color:var(--mute); line-height:1.7; }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
-<main>
-  <div class="k">Datos onchain · gratis · en español</div>
-  <h1>Bitcoin, leído directamente desde la cadena.</h1>
-  <p class="lead">El panel completo está en construcción. Mientras tanto, estos son los indicadores de hoy.</p>
+<a class="skip" href="#contenido">Saltar al contenido</a>
 
-  <div class="bar" role="img" aria-label="Termómetro de ciclo AFPBTC">
-    <span></span><span></span><span></span><span></span><span></span>
-    <div class="mark" id="mark"></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="AFPBTC, inicio">
+      <span class="brand-mark" aria-hidden="true">A₿</span>
+      <span class="brand-name">AFPBTC</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="/metricas/">Métricas</a>
+      <a href="#ciclo">Ciclo</a>
+      <a href="#aprende">Aprende</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#asesores">Asesores</a>
+      <a class="btn btn-primary btn-sm header-cta" href="mailto:contacto@afpbtc.com?subject=Quiero%20agendar%20una%20asesor%C3%ADa">Agenda una asesoría</a>
+    </nav>
   </div>
-  <div class="legend"><span>Capitulación</span><span>Acumulación</span><span>Optimismo</span><span>Creencia</span><span>Euforia</span></div>
-  <p class="lbl" id="cycle" style="margin-top:14px">Cargando…</p>
+</header>
 
-  <div class="grid" id="grid"></div>
+<main id="contenido">
 
-  <footer>
-    <div>Análisis: <a href="https://substack.com/@felixpg" rel="noopener">Felix Peña Grass en Substack</a></div>
-    <div id="attr">Datos: Bitview / Bitcoin Research Kit · Cálculos: AFPBTC</div>
-    <div>Contenido educativo. Nada en este sitio es una recomendación personalizada de inversión.</div>
-  </footer>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Datos onchain · gratis · en español</p>
+      <h1>Bitcoin, leído directamente desde la cadena.</h1>
+      <p class="lead">Valoración, ciclo, comportamiento de holders y salud de la red — explicados en español para que decidas con datos, no con ruido.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/metricas/">Abrir el panel de métricas</a>
+        <a class="btn btn-ghost" href="#aprende">Qué mide cada indicador</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ticker" aria-label="Indicadores de hoy">
+    <div class="wrap">
+      <div class="tick"><div class="tick-label">Precio BTC</div><div class="tick-value" id="t-price">—</div><div class="tick-src">Diario · USD</div></div>
+      <div class="tick"><div class="tick-label">MVRV Z-Score</div><div class="tick-value" id="t-z">—</div><div class="tick-src">Onchain · diario</div></div>
+      <div class="tick"><div class="tick-label">NUPL</div><div class="tick-value" id="t-nupl">—</div><div class="tick-src">Onchain · diario</div></div>
+      <div class="tick"><div class="tick-label">Hashrate</div><div class="tick-value" id="t-hash">—</div><div class="tick-src">Red · media 7 días</div></div>
+      <div class="tick"><div class="tick-label">Comisión 30 min</div><div class="tick-value" id="t-fee">—</div><div class="tick-src" id="t-fee-src">Mempool</div></div>
+      <div class="tick"><div class="tick-label">Último bloque</div><div class="tick-value" id="t-block">—</div><div class="tick-src" id="t-block-src">Red</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="ciclo">
+    <div class="wrap">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px">
+        <div style="max-width:660px">
+          <p class="kicker">Termómetro de ciclo AFPBTC</p>
+          <h2 class="h2">¿En qué fase del ciclo estamos?</h2>
+          <p class="lead">Un índice de 0 a 100 que combina el percentil histórico del MVRV Z-Score, el NUPL y el MVRV de largo plazo. Cada día se calcula solo con datos disponibles hasta esa fecha.</p>
+        </div>
+        <a href="/metricas/?m=cycle_index">Ver metodología y gráfico →</a>
+      </div>
+      <div class="thermo" role="img" id="thermo" aria-label="Termómetro de ciclo: cargando">
+        <span></span><span></span><span></span><span></span><span></span>
+        <div class="thermo-mark" id="thermo-mark" hidden></div>
+      </div>
+      <div class="thermo-legend" aria-hidden="true"><span><span class="l">Capitulación</span><span class="s">Capit.</span></span><span><span class="l">Acumulación</span><span class="s">Acum.</span></span><span><span class="l">Optimismo</span><span class="s">Optim.</span></span><span><span class="l">Creencia</span><span class="s">Creen.</span></span><span><span class="l">Euforia</span><span class="s">Euforia</span></span></div>
+      <div class="thermo-read">
+        <span class="thermo-value" id="cyc-value">—</span>
+        <span class="thermo-phase" id="cyc-phase">Cargando…</span>
+        <span class="thermo-meta" id="cyc-meta"></span>
+      </div>
+      <figure class="cycle-hist" style="margin-left:0;margin-right:0">
+        <div class="cycle-hist-label"><span>Historia del termómetro</span><span id="cyc-range"></span></div>
+        <div id="cyc-hist" aria-hidden="true"></div>
+        <figcaption class="sr-only">Evolución del termómetro de ciclo desde 2013.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0" aria-labelledby="stack-title">
+    <div class="wrap">
+      <p class="kicker">El stack onchain</p>
+      <h2 class="h2" id="stack-title" style="margin-bottom:40px">Seis capas para entender Bitcoin</h2>
+      <div class="grid-cards" id="layers">
+        <a class="card" href="/metricas/?m=mvrv_zscore" data-metric="mvrv_zscore">
+          <div class="card-top"><span class="n">01</span><span class="tag">Valoración</span></div>
+          <h3>¿Caro o barato?</h3>
+          <p>Compara el precio de mercado con el costo base agregado de la red.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">MVRV Z-Score · Precio realizado · Mayer</span>
+        </a>
+        <a class="card" href="/metricas/?m=sopr" data-metric="sopr">
+          <div class="card-top"><span class="n">02</span><span class="tag">Comportamiento</span></div>
+          <h3>¿Se vende con ganancia o pérdida?</h3>
+          <p>Lo que hacen los holders cuando mueven sus monedas.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">SOPR · NUPL · Reserve Risk</span>
+        </a>
+        <a class="card" href="/metricas/?m=lth_share" data-metric="lth_share">
+          <div class="card-top"><span class="n">03</span><span class="tag">Holders</span></div>
+          <h3>¿Quién tiene los bitcoins?</h3>
+          <p>Manos de largo plazo frente a compradores recientes.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">Participación LTH · Oferta LTH / STH</span>
+        </a>
+        <a class="card" href="/metricas/?m=hashrate" data-metric="hashrate">
+          <div class="card-top"><span class="n">04</span><span class="tag">Red</span></div>
+          <h3>¿Qué tan segura es la red?</h3>
+          <p>Seguridad y economía de la minería.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">Hashrate · Hashprice · Puell</span>
+        </a>
+        <a class="card" href="/metricas/?m=fee_rate_median" data-metric="fee_rate_median">
+          <div class="card-top"><span class="n">05</span><span class="tag">Mempool</span></div>
+          <h3>¿Cuánto cuesta transaccionar?</h3>
+          <p>Demanda por espacio de bloque y comisiones pagadas.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">Comisión mediana · Mempool</span>
+        </a>
+        <a class="card" href="/metricas/?m=cycle_index" data-metric="cycle_index">
+          <div class="card-top"><span class="n">06</span><span class="tag">Ciclo</span></div>
+          <h3>¿Dónde estamos en el ciclo?</h3>
+          <p>El termómetro AFPBTC resume valoración y comportamiento en un número.</p>
+          <div class="card-value" data-value>—</div><div data-spark></div>
+          <span class="card-metrics">Termómetro de ciclo AFPBTC</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream" id="aprende">
+    <div class="wrap section">
+      <div class="learn">
+        <div class="learn-intro">
+          <p class="kicker">Aprende</p>
+          <h2 class="h2">El glosario onchain que faltaba en español</h2>
+          <p class="lead">Cada métrica del panel tiene su ficha: qué mide, cómo se calcula, cómo leerla y en qué falla.</p>
+          <p style="margin-top:28px"><a href="/metricas/" style="font-weight:600">Ir al panel de métricas →</a></p>
+        </div>
+        <dl class="glossary" id="glossary"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servicios">
+    <div class="wrap">
+      <p class="kicker">Servicios</p>
+      <h2 class="h2" style="max-width:760px">De los datos a tu patrimonio en Bitcoin</h2>
+      <p class="lead" style="margin-bottom:48px">El panel es abierto para todos. Si quieres acompañamiento, trabajamos contigo en tres niveles.</p>
+      <div class="grid-cards">
+        <div class="card service">
+          <span class="kicker" style="margin:0;font-size:12px">Análisis</span>
+          <h3>AFPBTC Research</h3>
+          <p>Reportes onchain profundos para inversionistas que quieren entender el ciclo.</p>
+          <ul><li>Reporte semanal del ciclo</li><li>Lectura de métricas clave</li><li>Comunidad en español</li></ul>
+          <div class="service-foot"><span class="mono">Gratis en Substack</span><a class="btn btn-outline btn-sm" href="https://felixpg.substack.com/subscribe" rel="noopener">Suscribirme</a></div>
+        </div>
+        <div class="card service">
+          <span class="kicker" style="margin:0;font-size:12px">Asesoría</span>
+          <h3>Sesiones 1 a 1</h3>
+          <p>Revisamos tu situación, tu estrategia de compra y tu plan de custodia.</p>
+          <ul><li>Estrategia de acumulación (DCA)</li><li>Autocustodia y multifirma</li><li>Coordinación tributaria con tu contador</li></ul>
+          <div class="service-foot"><span class="mono">Consultar</span><a class="btn btn-outline btn-sm" href="mailto:contacto@afpbtc.com?subject=Sesi%C3%B3n%201%20a%201">Agendar</a></div>
+        </div>
+        <div class="card service">
+          <span class="kicker" style="margin:0;font-size:12px">Patrimonio</span>
+          <h3>Gestión patrimonial</h3>
+          <p>Acompañamiento continuo para familias y empresas con Bitcoin en su balance.</p>
+          <ul><li>Política de inversión en BTC</li><li>Herencia y sucesión de llaves</li><li>Tesorería corporativa</li></ul>
+          <div class="service-foot"><span class="mono">A medida</span><a class="btn btn-outline btn-sm" href="mailto:contacto@afpbtc.com?subject=Gesti%C3%B3n%20patrimonial">Conversemos</a></div>
+        </div>
+      </div>
+
+      <div id="asesores" style="margin-top:72px;scroll-margin-top:90px">
+        <p class="kicker">Asesores</p>
+        <div class="advisor">
+          <div class="avatar" aria-hidden="true">FP</div>
+          <div class="advisor-body">
+            <h3>Felix Peña Grass</h3>
+            <p class="role">Analista On-Chain · Bitcoin + Ethereum</p>
+            <p>Estudia cómo las métricas onchain dan forma a los ciclos de mercado. Publica sus análisis en Substack.</p>
+          </div>
+          <a class="btn btn-outline btn-sm" href="https://substack.com/@felixpg" rel="noopener">Leer en Substack ↗</a>
+        </div>
+      </div>
+
+      <p class="note">El contenido de AFPBTC es educativo y no constituye una recomendación personalizada de inversión. La asesoría personalizada se presta solo cuando cumple los requisitos regulatorios del país del cliente. AFPBTC no custodia fondos de clientes.</p>
+    </div>
+  </section>
+
+  <section class="newsletter border-top" aria-labelledby="nl-title">
+    <div class="wrap">
+      <div style="max-width:560px">
+        <h2 id="nl-title">El reporte onchain de la semana</h2>
+        <p style="margin:12px 0 0;font-size:16px;color:var(--ink-2);line-height:1.55">Una lectura del ciclo en 5 minutos, gratis, en tu correo.</p>
+      </div>
+      <form action="https://felixpg.substack.com/subscribe" method="get" target="_blank" rel="noopener">
+        <label for="nl-email" class="sr-only">Correo electrónico</label>
+        <input class="input" id="nl-email" name="email" type="email" required placeholder="tu@correo.com" autocomplete="email">
+        <button class="btn btn-primary" type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
 </main>
-<script>
-  const show = [
-    ["price", "Precio BTC", v => "$" + Math.round(v).toLocaleString("es-CL")],
-    ["mvrv_zscore", "MVRV Z-Score", v => v.toFixed(2)],
-    ["nupl", "NUPL", v => v.toFixed(3)],
-    ["realized_price", "Precio realizado", v => "$" + Math.round(v).toLocaleString("es-CL")],
-    ["hashrate", "Hashrate", v => Math.round(v).toLocaleString("es-CL") + " EH/s"],
-    ["fee_rate_median", "Comisión mediana", v => v.toFixed(1) + " sat/vB"],
-  ];
-  fetch("/data/latest.json").then(r => r.json()).then(d => {
-    const grid = document.getElementById("grid");
-    for (const [id, label, fmt] of show) {
-      const m = d.metrics[id];
-      if (!m) continue;
-      const el = document.createElement("div");
-      el.className = "card";
-      el.innerHTML = '<div class="lbl"></div><div class="val"></div><div class="lbl" style="margin-top:6px"></div>';
-      el.children[0].textContent = label;
-      el.children[1].textContent = fmt(m.value);
-      el.children[2].textContent = m.date;
-      grid.appendChild(el);
-    }
-    if (d.cycle && d.cycle.value != null) {
-      document.getElementById("mark").style.left = Math.min(99, Math.max(0, d.cycle.value)) + "%";
-      document.getElementById("cycle").textContent =
-        "Lectura actual: " + d.cycle.value.toFixed(1) + " · " + d.cycle.phase + " · " + d.cycle.date;
-    }
-    document.getElementById("attr").textContent = d.attribution;
-  }).catch(() => {
-    document.getElementById("cycle").textContent = "Datos no disponibles en este momento.";
-  });
-</script>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div style="max-width:420px">
+      <strong style="font-size:18px;font-weight:800">AFPBTC</strong>
+      <span>Contenido educativo. Nada en este sitio es una recomendación personalizada de inversión.</span>
+    </div>
+    <div>
+      <strong>Fuentes de datos</strong>
+      <span>Bitview / Bitcoin Research Kit (MIT)</span><br>
+      <span>Cálculos propios: AFPBTC</span><br>
+      <span id="f-updated"></span>
+    </div>
+    <div>
+      <strong>Contacto</strong>
+      <a href="mailto:contacto@afpbtc.com">contacto@afpbtc.com</a><br>
+      <a href="https://substack.com/@felixpg" rel="noopener">Substack</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/common.js"></script>
+<script src="/assets/js/home.js"></script>
 </body>
 </html>

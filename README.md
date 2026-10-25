@@ -33,7 +33,11 @@ collector/
   derive.py    Cálculos propios: Z-Score, Mayer, percentiles, termómetro
   collect.py   Orquesta todo y escribe public/data/
 tests/         Pruebas sin internet (API simulada)
-public/        Sitio estático (index.html provisional + _headers)
+public/        Sitio estático servido por Cloudflare Pages
+  index.html          Inicio: ticker, termómetro, capas, glosario, servicios, asesores
+  metricas/           Panel interactivo (uPlot): ?m=<id de métrica>
+  assets/             CSS, JS y uPlot (MIT) incluidos en el repo, sin CDNs
+  _headers            Caché y CORS de /data
 .github/workflows/collect.yml   Automatización diaria
 run_local.ps1  Ejecutar y previsualizar en Windows
 ```
@@ -79,8 +83,12 @@ Cuando montes Bitcoin Core + BRK, no hay que tocar el código: define la variabl
 - Cada gráfico y archivo lleva la atribución "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC".
 - La licencia MIT cubre el código de BRK, no necesariamente el servicio público `bitview.space`. Antes del lanzamiento comercial, conviene escribirle al mantenedor del proyecto (github.com/bitcoinresearchkit) para contarle el uso.
 
+## Correo
+
+`contacto@afpbtc.com` y `felix@afpbtc.com` se reenvían a Gmail con Cloudflare Email Routing (Cloudflare → Email → Email Routing).
+
 ## Agregar una métrica
 
 1. Busca la serie: `https://bitview.space/api/series/search?q=<concepto>`.
-2. Agrégala a `RAW_SERIES` en `collector/config.py`. Si va al panel, agrégala también a `CATALOG`, con su explicación en español.
+2. Agrégala a `RAW_SERIES` en `collector/config.py`. Si va al panel, agrégala también a `CATALOG` (explicación en español) y, si corresponde, a `CHART_HINTS` (zonas, línea de referencia, escala log). El panel la muestra sola.
 3. Corre `python -m unittest discover -s tests` y `python -m collector.collect --full`.

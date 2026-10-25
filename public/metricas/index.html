@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de métricas onchain — AFPBTC</title>
+<meta name="description" content="Gráficos gratuitos de MVRV, MVRV Z-Score, NUPL, SOPR, precio realizado, holders de largo plazo, hashrate y más, con explicación en español.">
+<link rel="canonical" href="https://afpbtc.com/metricas/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AFPBTC">
+<meta property="og:title" content="Panel de métricas onchain de Bitcoin — AFPBTC">
+<meta property="og:description" content="Métricas onchain de Bitcoin gratis y en español, con histórico descargable.">
+<meta property="og:url" content="https://afpbtc.com/metricas/">
+<meta name="theme-color" content="#0D0E0C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vendor/uplot.min.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap" style="max-width:none">
+    <a class="brand" href="/" aria-label="AFPBTC, inicio">
+      <span class="brand-mark" aria-hidden="true">A₿</span>
+      <span class="brand-name">AFPBTC</span>
+      <span class="brand-sub">/ métricas</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="/metricas/" aria-current="page">Métricas</a>
+      <a href="/#ciclo">Ciclo</a>
+      <a href="/#aprende">Aprende</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/#asesores">Asesores</a>
+      <a class="btn btn-primary btn-sm header-cta" href="mailto:contacto@afpbtc.com?subject=Quiero%20agendar%20una%20asesor%C3%ADa">Asesoría</a>
+    </nav>
+  </div>
+</header>
+
+<div class="panel">
+  <aside class="panel-side" aria-label="Lista de métricas">
+    <label for="search" class="sr-only">Buscar métrica</label>
+    <input class="input side-search" id="search" type="search" placeholder="Buscar métrica…" autocomplete="off">
+    <div class="side-list" id="side"></div>
+  </aside>
+
+  <main class="panel-main" id="contenido">
+    <div class="metric-head">
+      <div>
+        <p class="kicker" id="m-group" style="margin:0">&nbsp;</p>
+        <h1 id="m-name">Cargando…</h1>
+        <p id="m-what"></p>
+      </div>
+      <div class="metric-now" aria-live="polite">
+        <div class="mono" style="font-size:12px;color:var(--mute)">Valor actual <span id="m-date"></span></div>
+        <div class="v" id="m-value">—</div>
+        <div class="d" id="m-change"></div>
+      </div>
+    </div>
+
+    <div class="toolbar" role="group" aria-label="Opciones del gráfico">
+      <button class="chip" type="button" data-range="365" aria-pressed="false">1A</button>
+      <button class="chip" type="button" data-range="1461" aria-pressed="false">4A</button>
+      <button class="chip" type="button" data-range="cycle" aria-pressed="false">Ciclo actual</button>
+      <button class="chip" type="button" data-range="all" aria-pressed="true">Todo</button>
+      <span class="spacer"></span>
+      <button class="chip" type="button" id="log-toggle" aria-pressed="true">Precio en escala log</button>
+      <a class="chip" id="csv" href="#" download>Descargar CSV</a>
+    </div>
+
+    <figure class="chart-box" style="margin-left:0;margin-right:0">
+      <div class="chart" id="chart"><div class="chart-msg">Cargando datos…</div></div>
+      <figcaption class="chart-cap" id="m-caption"></figcaption>
+    </figure>
+
+    <div class="info-grid">
+      <section class="card"><h2>Cómo se calcula</h2><p class="formula" id="m-formula"></p></section>
+      <section class="card"><h2>Cómo leerla</h2><p id="m-read"></p></section>
+      <section class="card"><h2>Dónde falla</h2><p id="m-limits"></p></section>
+    </div>
+
+    <div class="cta-cream">
+      <div>
+        <strong>¿Qué significa esto para tu patrimonio?</strong>
+        <span>Los datos son iguales para todos; la estrategia depende de tu horizonte, tus impuestos y tu custodia.</span>
+      </div>
+      <a class="btn" href="mailto:contacto@afpbtc.com?subject=Quiero%20agendar%20una%20asesor%C3%ADa">Agenda una sesión</a>
+    </div>
+
+    <p class="note">Contenido educativo; no es una recomendación de inversión. <span id="attr">Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC</span>.</p>
+  </main>
+</div>
+
+<script src="/assets/vendor/uplot.min.js"></script>
+<script src="/assets/js/common.js"></script>
+<script src="/assets/js/panel.js"></script>
+</body>
+</html>

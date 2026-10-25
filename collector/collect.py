@@ -238,6 +238,7 @@ def catalog_doc(generated):
         item["source_label"] = ("Calculado por AFPBTC con datos de Bitview"
                                 if m["source"] == "afpbtc" else "Bitview / BRK")
         item.setdefault("unit", u.get(m["id"], ("", ""))[0])
+        item["chart"] = config.CHART_HINTS.get(m["id"], {})
         items.append(item)
     return {"generated_at": generated, "groups": config.GROUPS,
             "attribution": config.ATTRIBUTION, "metrics": items}
