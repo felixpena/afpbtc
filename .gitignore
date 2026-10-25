@@ -1,0 +1,7 @@
+# Los datos se generan en GitHub Actions y se publican en la rama "deploy".
+public/data/
+__pycache__/
+*.pyc
+*.tmp
+.venv/
+.env
