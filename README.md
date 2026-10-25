@@ -85,9 +85,9 @@ Cuando montes Bitcoin Core + BRK, no hay que tocar el código: define la variabl
 - Cada gráfico y archivo lleva la atribución "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC".
 - La licencia MIT cubre el código de BRK, no necesariamente el servicio público `bitview.space`. Antes del lanzamiento comercial, conviene escribirle al mantenedor del proyecto (github.com/bitcoinresearchkit) para contarle el uso.
 
-## Correo
+## Contacto
 
-`contacto@afpbtc.com` y `felix@afpbtc.com` se reenvían a Gmail con Cloudflare Email Routing (Cloudflare → Email → Email Routing).
+El sitio no publica direcciones de correo. Los mensajes llegan por el formulario de `/contacto/`, que envía a Formspree (con filtro anti-spam y campo trampa `_gotcha`). El ID del formulario está en el atributo `action` de `public/contacto/index.html`.
 
 ## Agregar una métrica
 

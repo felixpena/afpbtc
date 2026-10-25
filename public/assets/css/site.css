@@ -228,3 +228,29 @@ a.card:hover { border-color: var(--line-2); color: var(--ink); }
 .u-legend .u-marker { border-radius: 2px; }
 .u-legend th { font-weight: 400; }
 .u-select { background: rgba(247,147,26,.12); }
+
+/* ---------- Contacto ---------- */
+.contact { display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start; }
+.contact-intro { flex: 1 1 340px; }
+.contact-points { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 18px; }
+.contact-points li { border-top: 1px solid var(--line); padding-top: 16px; }
+.contact-points strong { display: block; font-size: 17px; }
+.contact-points span { color: var(--ink-2); font-size: 15px; }
+.contact-form { flex: 1 1 420px; gap: 18px; padding: 30px; }
+.field { display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto; min-width: 0; }
+.field-row .field { flex: 1 1 200px; }
+.field label { font-size: 14px; font-weight: 600; color: var(--ink); }
+.field-row { display: flex; flex-wrap: wrap; gap: 18px; }
+.contact-form .input { width: 100%; flex: 0 0 auto; }
+select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%); background-position: calc(100% - 20px) 21px, calc(100% - 15px) 21px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
+textarea.input { padding: 14px 16px; min-height: 140px; resize: vertical; line-height: 1.5; }
+.input:focus { border-color: var(--btc); outline: none; }
+.contact-form .input:user-invalid { border-color: #EB8A6B; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--btc); flex: 0 0 auto; }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.contact-form .btn { align-self: flex-start; }
+.contact-form .btn:disabled { opacity: .7; cursor: default; }
+.form-status { margin: 0; font-size: 15px; min-height: 1.5em; }
+.form-status.ok { color: #6FCF97; }
+.form-status.err { color: #EB8A6B; }
