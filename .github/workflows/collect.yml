@@ -1,0 +1,73 @@
+# Actualiza los datos onchain una vez al día y publica el sitio.
+#
+# Cómo funciona:
+#   1. Recupera los datos ya publicados (rama "deploy") para descargar solo lo nuevo.
+#   2. Corre las pruebas y el recolector.
+#   3. Publica public/ (sitio + data/) en la rama "deploy" con un único commit,
+#      así el historial de Git no crece día a día.
+# Cloudflare Pages está conectado a la rama "deploy" y publica afpbtc.com.
+
+name: Datos onchain diarios
+
+on:
+  schedule:
+    - cron: "17 1 * * *"   # 01:17 UTC ≈ 22:17 en Santiago
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Volver a descargar todo el histórico"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recuperar datos publicados
+        run: |
+          if git ls-remote --exit-code --heads origin deploy >/dev/null; then
+            git fetch --depth 1 origin deploy
+            git archive FETCH_HEAD data | tar -x -C public/ || true
+            echo "Datos previos recuperados."
+          else
+            echo "Primera ejecución: se descargará el histórico completo."
+          fi
+
+      - name: Pruebas
+        run: python -m unittest discover -s tests -v
+
+      - name: Recolectar
+        run: |
+          if [ "${{ inputs.full }}" = "true" ]; then
+            python -m collector.collect --out public/data --full
+          else
+            python -m collector.collect --out public/data
+          fi
+
+      - name: Publicar en la rama deploy
+        run: |
+          cd public
+          git init -q -b deploy
+          git config user.name "afpbtc-bot"
+          git config user.email "afpbtc-bot@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Datos $(date -u +%F)"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
