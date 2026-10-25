@@ -64,6 +64,8 @@ jobs:
 
       - name: Publicar en la rama deploy
         run: |
+          # Versiona CSS/JS para que los navegadores no usen copias viejas en caché.
+          find public -name '*.html' -exec sed -i "s/__V__/${GITHUB_SHA::8}/g" {} +
           cd public
           git init -q -b deploy
           git config user.name "afpbtc-bot"

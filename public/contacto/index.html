@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css?v=__V__">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -82,7 +82,7 @@
         <textarea class="input" id="c-msg" name="mensaje" rows="6" required minlength="10" maxlength="4000" placeholder="Cuéntanos brevemente tu situación y qué te gustaría lograr."></textarea>
       </div>
       <!-- Trampa para bots: los humanos no ven este campo. -->
-      <div class="hp" aria-hidden="true">
+      <div class="hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
         <label for="c-gotcha">No completar</label>
         <input id="c-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
       </div>
@@ -112,7 +112,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/common.js"></script>
-<script src="/assets/js/contact.js"></script>
+<script src="/assets/js/common.js?v=__V__"></script>
+<script src="/assets/js/contact.js?v=__V__"></script>
 </body>
 </html>
