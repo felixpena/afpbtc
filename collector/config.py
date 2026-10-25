@@ -38,7 +38,7 @@ REQUEST_PAUSE_SECONDS = 1.0
 # termómetro de ciclo solo consideran datos desde esta fecha.
 CYCLE_BASELINE_START = date(2012, 1, 1)
 
-ATTRIBUTION = "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC"
+ATTRIBUTION = "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC (Arquitectura Financiera Personal)"
 
 
 # --- Series que se descargan desde Bitview --------------------------------

@@ -1,4 +1,6 @@
-# AFPBTC — backend de datos onchain
+# AFPBTC — Arquitectura Financiera Personal
+
+Backend de datos onchain y sitio de afpbtc.com.
 
 Este backend descarga métricas onchain de Bitcoin todos los días, calcula los indicadores propios de AFPBTC y los publica como una **API estática en JSON y CSV** que lee el sitio afpbtc.com. Costo mensual: **US$0**.
 
