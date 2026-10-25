@@ -69,7 +69,7 @@
         pen = true;
       }
       var p = document.createElementNS(ns, 'path');
-      p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#EDEAE3');
+      p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', getComputedStyle(document.body).getPropertyValue('--ink').trim() || '#EDEAE3');
       p.setAttribute('stroke-width', '1.6'); p.setAttribute('vector-effect', 'non-scaling-stroke');
       svg.appendChild(p);
       $('#cyc-hist').appendChild(svg);
