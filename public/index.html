@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFPBTC — Datos onchain de Bitcoin en español</title>
+<meta name="description" content="Valoración, ciclo y salud de la red Bitcoin, leídos desde la cadena y explicados en español.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0D0E0C; --card:#151613; --line:#262823; --ink:#EDEAE3; --mute:#A39E93; --btc:#F7931A; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Archivo, system-ui, sans-serif; }
+  main { max-width:1000px; margin:0 auto; padding:72px 16px; }
+  .k { font-family:"JetBrains Mono", monospace; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--btc); }
+  h1 { font-size:clamp(40px,7vw,76px); line-height:1; letter-spacing:-.03em; margin:16px 0 0; font-weight:800; }
+  p.lead { color:#C9C4B8; font-size:19px; line-height:1.55; max-width:620px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-top:40px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; }
+  .lbl { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--mute); text-transform:uppercase; letter-spacing:.08em; }
+  .val { font-family:"JetBrains Mono", monospace; font-size:26px; margin-top:8px; }
+  .bar { position:relative; display:grid; grid-template-columns:repeat(5,1fr); height:44px; border-radius:8px; overflow:hidden; margin-top:40px; }
+  .bar span:nth-child(1){background:#1F4E79}.bar span:nth-child(2){background:#2E7DAF}.bar span:nth-child(3){background:#8A8F7A}.bar span:nth-child(4){background:#D9822B}.bar span:nth-child(5){background:#B8441E}
+  .mark { position:absolute; top:-6px; bottom:-6px; width:4px; background:var(--ink); border-radius:2px; left:50%; transition:left .6s; }
+  .legend { display:grid; grid-template-columns:repeat(5,1fr); font-size:13px; color:#C9C4B8; margin-top:10px; }
+  a { color:var(--btc); }
+  footer { margin-top:56px; font-size:13px; color:var(--mute); line-height:1.7; }
+</style>
+</head>
+<body>
+<main>
+  <div class="k">Datos onchain · gratis · en español</div>
+  <h1>Bitcoin, leído directamente desde la cadena.</h1>
+  <p class="lead">El panel completo está en construcción. Mientras tanto, estos son los indicadores de hoy.</p>
+
+  <div class="bar" role="img" aria-label="Termómetro de ciclo AFPBTC">
+    <span></span><span></span><span></span><span></span><span></span>
+    <div class="mark" id="mark"></div>
+  </div>
+  <div class="legend"><span>Capitulación</span><span>Acumulación</span><span>Optimismo</span><span>Creencia</span><span>Euforia</span></div>
+  <p class="lbl" id="cycle" style="margin-top:14px">Cargando…</p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <div>Análisis: <a href="https://substack.com/@felixpg" rel="noopener">Felix Peña Grass en Substack</a></div>
+    <div id="attr">Datos: Bitview / Bitcoin Research Kit · Cálculos: AFPBTC</div>
+    <div>Contenido educativo. Nada en este sitio es una recomendación personalizada de inversión.</div>
+  </footer>
+</main>
+<script>
+  const show = [
+    ["price", "Precio BTC", v => "$" + Math.round(v).toLocaleString("es-CL")],
+    ["mvrv_zscore", "MVRV Z-Score", v => v.toFixed(2)],
+    ["nupl", "NUPL", v => v.toFixed(3)],
+    ["realized_price", "Precio realizado", v => "$" + Math.round(v).toLocaleString("es-CL")],
+    ["hashrate", "Hashrate", v => Math.round(v).toLocaleString("es-CL") + " EH/s"],
+    ["fee_rate_median", "Comisión mediana", v => v.toFixed(1) + " sat/vB"],
+  ];
+  fetch("/data/latest.json").then(r => r.json()).then(d => {
+    const grid = document.getElementById("grid");
+    for (const [id, label, fmt] of show) {
+      const m = d.metrics[id];
+      if (!m) continue;
+      const el = document.createElement("div");
+      el.className = "card";
+      el.innerHTML = '<div class="lbl"></div><div class="val"></div><div class="lbl" style="margin-top:6px"></div>';
+      el.children[0].textContent = label;
+      el.children[1].textContent = fmt(m.value);
+      el.children[2].textContent = m.date;
+      grid.appendChild(el);
+    }
+    if (d.cycle && d.cycle.value != null) {
+      document.getElementById("mark").style.left = Math.min(99, Math.max(0, d.cycle.value)) + "%";
+      document.getElementById("cycle").textContent =
+        "Lectura actual: " + d.cycle.value.toFixed(1) + " · " + d.cycle.phase + " · " + d.cycle.date;
+    }
+    document.getElementById("attr").textContent = d.attribution;
+  }).catch(() => {
+    document.getElementById("cycle").textContent = "Datos no disponibles en este momento.";
+  });
+</script>
+</body>
+</html>
