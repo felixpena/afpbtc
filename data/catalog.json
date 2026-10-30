@@ -1,0 +1,313 @@
+{
+  "generated_at": "2026-10-30T07:04:36Z",
+  "groups": [
+    "Valoración",
+    "Comportamiento",
+    "Holders",
+    "Red",
+    "Mempool",
+    "Ciclo"
+  ],
+  "attribution": "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC (Arquitectura Financiera Personal)",
+  "metrics": [
+    {
+      "id": "mvrv_zscore",
+      "group": "Valoración",
+      "name": "MVRV Z-Score",
+      "unit": "σ",
+      "source": "afpbtc",
+      "what": "Qué tan lejos está el valor de mercado de su valor realizado, en desviaciones estándar.",
+      "formula": "(Cap. de mercado − Cap. realizada) ÷ desviación estándar histórica de la Cap. de mercado",
+      "read": "Valores altos han coincidido con techos de ciclo; valores bajos o negativos, con zonas de acumulación.",
+      "limits": "Los umbrales históricos se desplazan a medida que madura el mercado y entra capital institucional.",
+      "series_url": "/data/series/mvrv_zscore.json",
+      "csv_url": "/data/series/mvrv_zscore.csv",
+      "source_label": "Calculado por AFPBTC con datos de Bitview",
+      "chart": {
+        "high": 7,
+        "low": 0
+      }
+    },
+    {
+      "id": "mvrv",
+      "group": "Valoración",
+      "name": "MVRV",
+      "unit": "×",
+      "source": "bitview",
+      "what": "Precio de mercado dividido por el precio realizado (costo base promedio de la red).",
+      "formula": "Precio ÷ Precio realizado",
+      "read": "Sobre 1, el holder promedio está en ganancia; bajo 1, en pérdida.",
+      "limits": "Monedas perdidas y custodia en exchanges distorsionan el costo base real.",
+      "series_url": "/data/series/mvrv.json",
+      "csv_url": "/data/series/mvrv.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "high": 3.5,
+        "low": 1,
+        "ref": 1
+      }
+    },
+    {
+      "id": "realized_price",
+      "group": "Valoración",
+      "name": "Precio realizado",
+      "unit": "USD",
+      "source": "bitview",
+      "what": "El costo base promedio de todos los bitcoins según su último movimiento.",
+      "formula": "Capitalización realizada ÷ oferta circulante",
+      "read": "Cuando el precio cae bajo el realizado, el holder promedio está en pérdida.",
+      "limits": "Monedas perdidas y custodia en exchanges distorsionan el costo base real.",
+      "series_url": "/data/series/realized_price.json",
+      "csv_url": "/data/series/realized_price.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "same_axis_as_price": true,
+        "log": true
+      }
+    },
+    {
+      "id": "mayer_multiple",
+      "group": "Valoración",
+      "name": "Mayer Multiple",
+      "unit": "×",
+      "source": "afpbtc",
+      "what": "El precio relativo a su media móvil de 200 días.",
+      "formula": "Precio ÷ media móvil simple de 200 días",
+      "read": "Mide estiramiento respecto de la tendencia de largo plazo.",
+      "limits": "Es una métrica de precio, no estrictamente onchain.",
+      "series_url": "/data/series/mayer_multiple.json",
+      "csv_url": "/data/series/mayer_multiple.csv",
+      "source_label": "Calculado por AFPBTC con datos de Bitview",
+      "chart": {
+        "high": 2.4,
+        "low": 0.8,
+        "ref": 1
+      }
+    },
+    {
+      "id": "sopr",
+      "group": "Comportamiento",
+      "name": "SOPR",
+      "unit": "×",
+      "source": "bitview",
+      "what": "Si las monedas que se mueven hoy se venden con ganancia o con pérdida.",
+      "formula": "Valor en USD al gastarse ÷ valor en USD al crearse el output (24 h)",
+      "read": "Sobre 1 se realiza ganancia; bajo 1, pérdida. El 1 suele actuar como soporte en alzas.",
+      "limits": "Movimientos internos de exchanges y custodios agregan ruido.",
+      "series_url": "/data/series/sopr.json",
+      "csv_url": "/data/series/sopr.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "ref": 1
+      }
+    },
+    {
+      "id": "nupl",
+      "group": "Comportamiento",
+      "name": "NUPL",
+      "unit": "ratio",
+      "source": "bitview",
+      "what": "La ganancia o pérdida no realizada de la red como fracción de su valor.",
+      "formula": "(Cap. de mercado − Cap. realizada) ÷ Cap. de mercado",
+      "read": "Se lee por fases: capitulación, esperanza, optimismo, creencia y euforia.",
+      "limits": "Comparte las debilidades del precio realizado.",
+      "series_url": "/data/series/nupl.json",
+      "csv_url": "/data/series/nupl.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "high": 0.75,
+        "low": 0,
+        "ref": 0
+      }
+    },
+    {
+      "id": "reserve_risk",
+      "group": "Comportamiento",
+      "name": "Reserve Risk",
+      "unit": "ratio",
+      "source": "bitview",
+      "what": "Confianza de los holders de largo plazo frente al precio actual.",
+      "formula": "Precio ÷ costo de oportunidad acumulado de no gastar monedas antiguas",
+      "read": "Valores bajos indican alta convicción y precio atractivo en perspectiva histórica.",
+      "limits": "Depende de supuestos sobre el comportamiento de monedas dormidas.",
+      "series_url": "/data/series/reserve_risk.json",
+      "csv_url": "/data/series/reserve_risk.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "high": 0.02,
+        "low": 0.0015,
+        "log": true
+      }
+    },
+    {
+      "id": "lth_supply",
+      "group": "Holders",
+      "name": "Oferta LTH",
+      "unit": "BTC",
+      "source": "bitview",
+      "what": "Bitcoins en manos de largo plazo (UTXO de 150 días o más).",
+      "formula": "Suma de UTXO con edad ≥ 150 días",
+      "read": "Los holders de largo plazo tienden a distribuir en alzas y acumular en caídas.",
+      "limits": "El umbral de 150 días es una convención, no una ley.",
+      "series_url": "/data/series/lth_supply.json",
+      "csv_url": "/data/series/lth_supply.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {}
+    },
+    {
+      "id": "sth_supply",
+      "group": "Holders",
+      "name": "Oferta STH",
+      "unit": "BTC",
+      "source": "bitview",
+      "what": "Bitcoins en manos de corto plazo (UTXO de menos de 150 días).",
+      "formula": "Suma de UTXO con edad < 150 días",
+      "read": "Crece cuando entran compradores nuevos o se reactivan monedas antiguas.",
+      "limits": "No distingue entre una venta y un cambio de billetera.",
+      "series_url": "/data/series/sth_supply.json",
+      "csv_url": "/data/series/sth_supply.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {}
+    },
+    {
+      "id": "hashrate",
+      "group": "Red",
+      "name": "Hashrate",
+      "unit": "EH/s",
+      "source": "bitview",
+      "what": "El poder de cómputo total que asegura la red.",
+      "formula": "Estimado desde dificultad y bloques producidos (media de 7 días)",
+      "read": "Tendencia alcista = más seguridad y compromiso de los mineros.",
+      "limits": "Es una estimación; varía con la suerte de los bloques.",
+      "series_url": "/data/series/hashrate.json",
+      "csv_url": "/data/series/hashrate.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "log": true
+      }
+    },
+    {
+      "id": "hashprice",
+      "group": "Red",
+      "name": "Hashprice",
+      "unit": "USD/PH/día",
+      "source": "bitview",
+      "what": "Ingreso esperado de un minero por unidad de poder de cómputo.",
+      "formula": "Ingreso de mineros en 24 h ÷ hashrate",
+      "read": "Hashprice bajo presiona a los mineros menos eficientes.",
+      "limits": "Sensible a picos de comisiones y al precio.",
+      "series_url": "/data/series/hashprice.json",
+      "csv_url": "/data/series/hashprice.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "log": true
+      }
+    },
+    {
+      "id": "puell_multiple",
+      "group": "Red",
+      "name": "Puell Multiple",
+      "unit": "×",
+      "source": "bitview",
+      "what": "Ingreso diario por emisión comparado con su promedio de un año.",
+      "formula": "Valor USD de la emisión diaria ÷ media de 365 días",
+      "read": "Valores bajos han coincidido con capitulación minera; altos, con euforia.",
+      "limits": "Los halvings cambian la escala de la emisión.",
+      "series_url": "/data/series/puell_multiple.json",
+      "csv_url": "/data/series/puell_multiple.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "high": 4,
+        "low": 0.5,
+        "ref": 1
+      }
+    },
+    {
+      "id": "fee_rate_median",
+      "group": "Mempool",
+      "name": "Comisión mediana",
+      "unit": "sat/vB",
+      "source": "bitview",
+      "what": "Lo que pagan los usuarios por entrar en un bloque.",
+      "formula": "Mediana de la tasa efectiva de comisión del día",
+      "read": "Picos señalan demanda de espacio de bloque.",
+      "limits": "Eventos puntuales (inscripciones, consolidaciones) generan picos aislados.",
+      "series_url": "/data/series/fee_rate_median.json",
+      "csv_url": "/data/series/fee_rate_median.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "log": true
+      }
+    },
+    {
+      "id": "cycle_index",
+      "group": "Ciclo",
+      "name": "Termómetro de ciclo AFPBTC",
+      "unit": "0–100",
+      "source": "afpbtc",
+      "what": "Índice compuesto que ubica el mercado entre capitulación (0) y euforia (100).",
+      "formula": "Promedio del percentil histórico (desde 2012) de MVRV Z-Score, NUPL y MVRV de largo plazo",
+      "read": "0–20 capitulación · 20–40 acumulación · 40–60 optimismo · 60–80 creencia · 80–100 euforia.",
+      "limits": "Es descriptivo, no predictivo. Los percentiles usan solo datos pasados a cada fecha.",
+      "series_url": "/data/series/cycle_index.json",
+      "csv_url": "/data/series/cycle_index.csv",
+      "source_label": "Calculado por AFPBTC con datos de Bitview",
+      "chart": {
+        "high": 80,
+        "low": 20,
+        "min": 0,
+        "max": 100
+      }
+    },
+    {
+      "id": "lth_mvrv",
+      "group": "Valoración",
+      "name": "MVRV de largo plazo",
+      "unit": "×",
+      "source": "bitview",
+      "what": "Ganancia no realizada de los holders de largo plazo (150 días o más).",
+      "formula": "Precio ÷ precio realizado de los holders de largo plazo",
+      "read": "Mide la convicción de las manos fuertes: valores altos indican grandes ganancias acumuladas que pueden empezar a venderse.",
+      "limits": "El grupo cambia de composición a medida que monedas cumplen 150 días.",
+      "series_url": "/data/series/lth_mvrv.json",
+      "csv_url": "/data/series/lth_mvrv.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "ref": 1,
+        "log": true
+      }
+    },
+    {
+      "id": "sth_mvrv",
+      "group": "Valoración",
+      "name": "MVRV de corto plazo",
+      "unit": "×",
+      "source": "bitview",
+      "what": "Ganancia o pérdida de los compradores recientes (menos de 150 días).",
+      "formula": "Precio ÷ precio realizado de los holders de corto plazo",
+      "read": "Bajo 1, los compradores recientes están en pérdida; el nivel 1 suele actuar como soporte o resistencia.",
+      "limits": "Reacciona rápido al precio y genera señales falsas en mercados laterales.",
+      "series_url": "/data/series/sth_mvrv.json",
+      "csv_url": "/data/series/sth_mvrv.csv",
+      "source_label": "Bitview / BRK",
+      "chart": {
+        "ref": 1
+      }
+    },
+    {
+      "id": "lth_share",
+      "group": "Holders",
+      "name": "Participación LTH",
+      "unit": "%",
+      "source": "afpbtc",
+      "what": "Porcentaje de la oferta en manos de largo plazo.",
+      "formula": "Oferta LTH ÷ oferta total × 100",
+      "read": "Sube en mercados bajistas (acumulación) y baja cuando los holders antiguos distribuyen en alzas.",
+      "limits": "Hereda la convención de 150 días de la definición LTH.",
+      "series_url": "/data/series/lth_share.json",
+      "csv_url": "/data/series/lth_share.csv",
+      "source_label": "Calculado por AFPBTC con datos de Bitview",
+      "chart": {}
+    }
+  ]
+}

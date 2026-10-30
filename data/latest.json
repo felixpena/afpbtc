@@ -1,0 +1,202 @@
+{
+  "generated_at": "2026-10-30T07:04:36Z",
+  "attribution": "Datos: Bitview / Bitcoin Research Kit (MIT) · Cálculos: AFPBTC (Arquitectura Financiera Personal)",
+  "cycle": {
+    "value": 35.7793,
+    "phase": "Acumulación",
+    "date": "2026-10-30"
+  },
+  "ticker": {
+    "fees": {
+      "fastestFee": 0.0,
+      "halfHourFee": 0.0,
+      "hourFee": 0.0,
+      "economyFee": 0.0,
+      "minimumFee": 0.0
+    },
+    "block_height": 973784,
+    "source": "https://bitview.space"
+  },
+  "metrics": {
+    "price": {
+      "value": 78518.3,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.747,
+      "change_30d_pct": -5.793
+    },
+    "market_cap": {
+      "value": 1578640000000.0,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.733,
+      "change_30d_pct": -5.728
+    },
+    "realized_cap": {
+      "value": 1086530000000.0,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.002684,
+      "change_30d_pct": 0.918
+    },
+    "realized_price": {
+      "value": 54041.9,
+      "date": "2026-10-30",
+      "change_7d_pct": -0.01188,
+      "change_30d_pct": 0.8488
+    },
+    "lth_realized_price": {
+      "value": 49099.0,
+      "date": "2026-10-30",
+      "change_7d_pct": -0.02527,
+      "change_30d_pct": -0.5351
+    },
+    "sth_realized_price": {
+      "value": 75816.4,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.1389,
+      "change_30d_pct": 3.376
+    },
+    "price_sma_200d": {
+      "value": 73182.6,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.3895,
+      "change_30d_pct": 2.731
+    },
+    "price_sma_200w": {
+      "value": 66992.2,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.3963,
+      "change_30d_pct": 2.058
+    },
+    "mvrv": {
+      "value": 1.45291,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.736,
+      "change_30d_pct": -6.586
+    },
+    "lth_mvrv": {
+      "value": 1.59918,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.723,
+      "change_30d_pct": -5.286
+    },
+    "sth_mvrv": {
+      "value": 1.03564,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.882,
+      "change_30d_pct": -8.869
+    },
+    "nupl": {
+      "value": 0.311728,
+      "date": "2026-10-30",
+      "change_7d_pct": -5.696,
+      "change_30d_pct": -12.69
+    },
+    "sopr": {
+      "value": 0.99765,
+      "date": "2026-10-30",
+      "change_7d_pct": -0.4787,
+      "change_30d_pct": -0.3681
+    },
+    "asopr": {
+      "value": 0.993566,
+      "date": "2026-10-30",
+      "change_7d_pct": -1.307,
+      "change_30d_pct": -0.9689
+    },
+    "lth_sopr": {
+      "value": 0.991195,
+      "date": "2026-10-30",
+      "change_7d_pct": -8.387,
+      "change_30d_pct": 6.272
+    },
+    "sth_sopr": {
+      "value": 0.99777,
+      "date": "2026-10-30",
+      "change_7d_pct": -0.277,
+      "change_30d_pct": -0.4968
+    },
+    "reserve_risk": {
+      "value": 4.04603e-06,
+      "date": "2026-10-30",
+      "change_7d_pct": -3.123,
+      "change_30d_pct": -7.559
+    },
+    "supply": {
+      "value": 20105300.0,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.01455,
+      "change_30d_pct": 0.06867
+    },
+    "lth_supply": {
+      "value": 16385700.0,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.08732,
+      "change_30d_pct": -1.006
+    },
+    "sth_supply": {
+      "value": 3719680.0,
+      "date": "2026-10-30",
+      "change_7d_pct": -0.3047,
+      "change_30d_pct": 5.093
+    },
+    "supply_in_profit": {
+      "value": 12578100.0,
+      "date": "2026-10-30",
+      "change_7d_pct": -3.637,
+      "change_30d_pct": -11.58
+    },
+    "hashrate": {
+      "value": 1083.57,
+      "date": "2026-10-30",
+      "change_7d_pct": 1.993,
+      "change_30d_pct": 10.85
+    },
+    "difficulty": {
+      "value": 148.365,
+      "date": "2026-10-30",
+      "change_7d_pct": 5.539,
+      "change_30d_pct": 11.76
+    },
+    "hashprice": {
+      "value": 33.9905,
+      "date": "2026-10-30",
+      "change_7d_pct": -6.995,
+      "change_30d_pct": -14.83
+    },
+    "puell_multiple": {
+      "value": 1.01712,
+      "date": "2026-10-30",
+      "change_7d_pct": -2.0,
+      "change_30d_pct": -2.64
+    },
+    "fee_rate_median": {
+      "value": 2.168,
+      "date": "2026-10-30",
+      "change_7d_pct": 93.23,
+      "change_30d_pct": 453.1
+    },
+    "mvrv_zscore": {
+      "value": 0.813771,
+      "date": "2026-10-30",
+      "change_7d_pct": -8.422,
+      "change_30d_pct": -18.34
+    },
+    "mayer_multiple": {
+      "value": 1.07291,
+      "date": "2026-10-30",
+      "change_7d_pct": -3.124,
+      "change_30d_pct": -8.297
+    },
+    "lth_share": {
+      "value": 81.499,
+      "date": "2026-10-30",
+      "change_7d_pct": 0.07276,
+      "change_30d_pct": -1.074
+    },
+    "cycle_index": {
+      "value": 35.7793,
+      "date": "2026-10-30",
+      "change_7d_pct": -5.631,
+      "change_30d_pct": -10.73
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# Reglas de cabeceras para Cloudflare Pages.
+
+/data/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600
+
+/data/latest.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300, stale-while-revalidate=900
+
+/assets/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
